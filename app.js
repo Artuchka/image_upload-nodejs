@@ -10,6 +10,12 @@ const { uploadsRouter } = require("./router/uploadRouter")
 require("dotenv").config()
 const app = express()
 const fileUpload = require("express-fileupload")
+const cloudinary = require("cloudinary").v2
+cloudinary.config({
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_KEY,
+	api_secret: process.env.CLOUD_SECRET,
+})
 
 const port = process.env.PORT || 3000
 app.use(cors())
@@ -17,7 +23,7 @@ app.use(express.static("./public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(fileUpload())
+app.use(fileUpload({ useTempFiles: true }))
 
 app.get("/", (req, res) => {
 	res.send("starter page")

@@ -9,14 +9,14 @@ const getAllProducts = async (req, res) => {
 	})
 }
 
-const serverURL = "http://localhost:5000"
+// const serverURL = "http://localhost:5000"
 const createProduct = async (req, res) => {
 	const { title, company, image } = req.body
 
 	const createdItem = await Products.create({
 		title,
 		company,
-		image: `${serverURL}/${image}`,
+		image,
 	})
 
 	res.json({
