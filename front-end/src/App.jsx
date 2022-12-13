@@ -2,13 +2,24 @@ import { useState } from "react"
 import { ItemList } from "../components/ItemList"
 import { UploadForm } from "../components/UploadForm"
 
-function App() {
-	const [count, setCount] = useState(0)
+const url = "http://localhost:5000/api/v1/products"
 
+function App() {
+	const [items, setItems] = useState([])
+
+	const getItems = async () => {
+		const resp = await fetch(url, {
+			method: "GET",
+		})
+		const data = await resp.json()
+		console.log(data)
+		const products = data.products
+		setItems(products)
+	}
 	return (
 		<div className="App">
-			<UploadForm />
-			<ItemList />
+			<UploadForm getItems={getItems} />
+			<ItemList getItems={getItems} items={items} />
 		</div>
 	)
 }

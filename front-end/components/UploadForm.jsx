@@ -3,7 +3,7 @@ import React, { useRef } from "react"
 const url = "http://localhost:5000/api/v1/products/uploads"
 const urlCreate = "http://localhost:5000/api/v1/products/"
 
-export const UploadForm = () => {
+export const UploadForm = ({ getItems }) => {
 	const fileInpRef = useRef(null)
 	const titleRef = useRef(null)
 	const companyRef = useRef(null)
@@ -33,6 +33,7 @@ export const UploadForm = () => {
 				},
 			})
 			console.log("resp is ", resp)
+			getItems()
 		} catch (error) {}
 	}
 	const onChange = async (e) => {
