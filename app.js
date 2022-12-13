@@ -1,5 +1,6 @@
 const express = require("express")
 require("express-async-errors")
+const cors = require("cors")
 
 const { connectDB } = require("./database/connect")
 const { errorHandlerMiddleware } = require("./middleware/error-handler")
@@ -14,6 +15,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
 
 app.use(
 	fileUpload({

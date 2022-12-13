@@ -2,6 +2,7 @@ const { Products } = require("../models/productModel")
 const path = require("path")
 
 const uploadImage = async (req, res) => {
+	console.log(req.files)
 	const file = req.files.image
 	const { name } = file
 	const uploadPath = path.join(__dirname, "../public", name)
