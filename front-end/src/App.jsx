@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { ItemList } from "../components/ItemList"
 import { UploadForm } from "../components/UploadForm"
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 	return (
 		<div className="App">
 			<UploadForm />
+			<ItemList />
 		</div>
 	)
 }
