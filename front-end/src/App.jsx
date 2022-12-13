@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { ItemList } from "../components/ItemList"
-import { UploadForm } from "../components/UploadForm"
-
+import { ItemList } from "./components/ItemList"
+import { UploadForm } from "./components/UploadForm"
 const url = "http://localhost:5000/api/v1/products"
+
+import "./main.scss"
 
 function App() {
 	const [items, setItems] = useState([])

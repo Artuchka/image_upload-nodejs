@@ -1,0 +1,40 @@
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	max-width: 600px;
+	gap: 1rem;
+	margin: 0 auto;
+
+	border: 1px solid black;
+	padding: 1rem;
+}
+.card {
+	display: grid;
+	grid-template-areas: "img img" "title company";
+	img {
+		width: 100%;
+		height: 100px;
+		object-fit: cover;
+	}
+	.company {
+		grid-area: company;
+	}
+	.title {
+		grid-area: title;
+	}
+}
+
+.form {
+	margin: 0 auto;
+	max-width: 600px;
+	border: 1px solid black;
+	padding: 1rem;
+}
+
+.App {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2rem;
+}

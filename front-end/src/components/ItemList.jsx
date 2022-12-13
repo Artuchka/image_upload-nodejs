@@ -6,7 +6,7 @@ export const ItemList = ({ getItems, items }) => {
 		getItems()
 	}, [])
 	return (
-		<div>
+		<div className="list">
 			{items.map((item) => {
 				return <Item {...item} key={item["_id"]} />
 			})}
