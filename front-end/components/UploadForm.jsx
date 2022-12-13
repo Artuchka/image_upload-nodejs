@@ -1,11 +1,39 @@
 import React, { useRef } from "react"
 
 const url = "http://localhost:5000/api/v1/products/uploads"
+const urlCreate = "http://localhost:5000/api/v1/products/"
 
 export const UploadForm = () => {
 	const fileInpRef = useRef(null)
-	const onSubmit = (e) => {
+	const titleRef = useRef(null)
+	const companyRef = useRef(null)
+
+	const onSubmit = async (e) => {
 		e.preventDefault()
+
+		const imageName = fileInpRef.current?.files?.[0]?.name
+		const title = titleRef.current.value
+		const company = companyRef.current.value
+		if (!imageName || !title || !company) {
+			console.log("bad inputs")
+			return
+		}
+		try {
+			const bodyObj = {
+				image: imageName,
+				title,
+				company,
+			}
+			console.log(bodyObj)
+			const resp = await fetch(urlCreate, {
+				method: "POST",
+				body: JSON.stringify(bodyObj),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+			console.log("resp is ", resp)
+		} catch (error) {}
 	}
 	const onChange = async (e) => {
 		e.preventDefault()
@@ -23,15 +51,25 @@ export const UploadForm = () => {
 		}
 	}
 	return (
-		<form className="form" onSubmit={onChange}>
+		<form className="form" onSubmit={onSubmit}>
 			<h3>upload the product</h3>
 			<div className="row">
 				<label htmlFor="title">title</label>
-				<input type="text" id="title" placeholder="enter title" />
+				<input
+					type="text"
+					id="title"
+					ref={titleRef}
+					placeholder="enter title"
+				/>
 			</div>
 			<div className="row">
 				<label htmlFor="company">company</label>
-				<input type="text" id="company" placeholder="enter company" />
+				<input
+					type="text"
+					id="company"
+					ref={companyRef}
+					placeholder="enter company"
+				/>
 			</div>
 			<div className="row">
 				<label htmlFor="image">image</label>

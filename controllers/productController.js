@@ -11,6 +11,7 @@ const getAllProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
 	const { title, company, image } = req.body
+	console.log(req.body)
 	const createdItem = await Products.create({ title, company, image })
 
 	res.json({
